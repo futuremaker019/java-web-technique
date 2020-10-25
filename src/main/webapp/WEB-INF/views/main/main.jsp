@@ -17,6 +17,7 @@
 			src="${contextPath}/resources/image/main_banner03.jpg"></li>
 	</ul>
 </div>
+
 <div class="main_book">
 	<c:set var="goods_count" value="0" />
 	<h3>베스트셀러</h3>
@@ -42,20 +43,22 @@
 		</c:if>
 	</c:forEach>
 </div>
+
 <div class="clear"></div>
 <div id="ad_sub_banner">
 	<img width="770" height="117" src="${contextPath}/resources/image/sub_banner01.jpg">
 </div>
+
 <div class="main_book">
 	<c:set var="goods_count" value="0" />
 	<h3>새로 출판된 책</h3>
 	<c:forEach var="item" items="${goodsMap.newbook }">
 		<c:set var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-			<a
-				href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+			<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
 				<img class="link" src="${contextPath}/resources/image/1px.gif">
-			</a> <img width="121" height="154"
+			</a> 
+			<img width="121" height="154"
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
 			<div class="title">${item.goods_title }</div>
 			<div class="price">
@@ -72,6 +75,7 @@
 	</c:forEach>
 </div>
 
+
 <div class="clear"></div>
 <div id="ad_sub_banner">
 	<img width="770" height="117"
@@ -85,8 +89,7 @@
 	<c:forEach var="item" items="${goodsMap.steadyseller }">
 		<c:set var="goods_count" value="${goods_count+1 }" />
 		<div class="book">
-			<a
-				href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
+			<a	href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
 				<img class="link" src="${contextPath}/resources/image/1px.gif">
 			</a> <img width="121" height="154"
 				src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">

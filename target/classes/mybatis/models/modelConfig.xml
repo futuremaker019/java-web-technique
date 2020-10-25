@@ -6,5 +6,6 @@
 	<typeAliases>
 		<typeAlias type="com.myspring.bookShop.goods.vo.GoodsVO" alias="goodsVO" />
 		<typeAlias type="com.myspring.bookShop.goods.vo.ImageFileVO" alias="imageFileVO"/>
+		<typeAlias type="com.myspring.bookShop.member.vo.MemberVO" alias="memberVO"/>
 	</typeAliases>
 </configuration>

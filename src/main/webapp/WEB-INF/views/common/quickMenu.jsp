@@ -11,6 +11,7 @@
 <script>
 	var array_index = 0;
 	var SERVER_URL = "${contextPath}/thumbnails.do";
+	
 	function fn_show_next_goods() {
 		var img_sticky = document.getElementById("img_sticky");
 		var cur_goods_num = document.getElementById("cur_goods_num");
@@ -25,6 +26,7 @@
 				+ fileName;
 		cur_goods_num.innerHTML = array_index + 1;
 	}
+	
 	function fn_show_previous_goods() {
 		var img_sticky = document.getElementById("img_sticky");
 		var cur_goods_num = document.getElementById("cur_goods_num");

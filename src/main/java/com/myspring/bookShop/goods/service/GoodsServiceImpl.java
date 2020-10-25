@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.myspring.bookShop.goods.dao.GoodsDAO;
 import com.myspring.bookShop.goods.vo.GoodsVO;
+import com.myspring.bookShop.goods.vo.ImageFileVO;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService{
@@ -30,5 +31,27 @@ public class GoodsServiceImpl implements GoodsService{
 		goodsMap.put("steadyseller", goodsList);
 		
 		return goodsMap;
+	}
+
+	@Override
+	public Map goodsDetail(String goods_id) throws Exception {
+		Map goodsMap = new HashMap();
+		GoodsVO goodsVO = goodsDAO.selectGoodsDetail(goods_id);
+		goodsMap.put("goodsVO", goodsVO);
+		
+		List<ImageFileVO> imageList = goodsDAO.selectGoodsDetailImage(goods_id);
+		goodsMap.put("imageList", imageList);
+		
+		return goodsMap;
+	}
+
+	@Override
+	public List<String> keywordSearch(String keyword) throws Exception {
+		return goodsDAO.selectKeywordSearch(keyword);
+	}
+
+	@Override
+	public List<GoodsVO> searchGoods(String searchWord) throws Exception {
+		return goodsDAO.selectGoodsBySearchWord(searchWord);
 	}
 }

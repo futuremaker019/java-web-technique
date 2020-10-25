@@ -9,22 +9,26 @@
 <meta charset="UTF-8">
 <title>header</title>
 <script type="text/javascript">
-	var loopSearch=true;
+
+	var loopSearch = true;
+	
 	function keywordSearch(){
-		if(loopSearch==false)
+		if(loopSearch == false)
 			return;
-	 var value=document.frmSearch.searchWord.value;
+		
+	 var value = document.frmSearch.searchWord.value;
+	 
 		$.ajax({
 			type : "get",
 			async : true, //false인 경우 동기식으로 처리한다.
 			url : "${contextPath}/goods/keywordSearch.do",
-			data : {keyword:value},
+			data : {keyword : value},
 			success : function(data, textStatus) {
-			    var jsonInfo = JSON.parse(data);
+			    var jsonInfo = JSON.parse(data);   // 전송된 데이터를 json으로 파싱한다.
 				displayResult(jsonInfo);
 			},
 			error : function(data, textStatus) {
-				alert("에러가 발생했습니다."+data);
+				alert("에러가 발생했습니다." + data);
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을완료 했습니다");
@@ -49,7 +53,7 @@
 	}
 	
 	function select(selectedKeyword) {
-		 document.frmSearch.searchWord.value=selectedKeyword;
+		 document.frmSearch.searchWord.value = selectedKeyword;
 		 loopSearch = false;
 		 hide('suggest');
 	}
@@ -71,8 +75,8 @@
 </head>
 <body>
 	<div id="logo">
-		<a href="${contextPath}/main/main.do"> <img width="176"
-			height="80" alt="booktopia"
+		<a href="${contextPath}/main/main.do"> 
+			<img width="176" height="80" alt="booktopia"
 			src="${contextPath}/resources/image/Booktopia_Logo.jpg">
 		</a>
 	</div>
@@ -92,8 +96,8 @@
 			</c:choose>
 			<li><a href="#">고객센터</a></li>
 			<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">
-				<li class="no_line"><a
-					href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+				<li class="no_line">
+					<a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
 			</c:if>
 
 		</ul>
@@ -101,9 +105,8 @@
 	<br>
 	<div id="search">
 		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do">
-			<input name="searchWord" class="main_input" type="text"
-				onKeyUp="keywordSearch()"> <input type="submit"
-				name="search" class="btn1" value="검 색">
+			<input class="main_input" type="text" name="searchWord" onKeyUp="keywordSearch()"> 
+			<input class="btn1" type="submit" name="search" value="검 색">
 		</form>
 	</div>
 	<div id="suggest">

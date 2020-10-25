@@ -47,4 +47,40 @@
 		]]>
 	</select>
 	
+	<!-- 31.4  상품 상세 구현하기  챕터의 mapper-->
+	<select id="selectGoodsDetail" parameterType="String" resultMap="goodsResult" >
+		<![CDATA[
+			select g.*, d.fileName from t_shopping_goods g, t_goods_detail_image d
+			where g.goods_id = d.goods_id
+			and d.filetype = 'main_image'
+			and g.goods_id = #{goods_id}
+			order by g.goods_id
+		]]>
+	</select>
+	<select id="selectGoodsDetailImage" parameterType="String" resultMap="imageResult">
+		<![CDATA[
+			select * from t_goods_detail_image
+			where
+			fileType != 'main_image'
+			and goods_id = #{goods_id}
+		]]>
+	</select>
+	
+	<!-- 31.5 Ajax 이용해 검색 자동 완성 기능 구현하기 -->
+	<select id="selectGoodsBySearchWord" resultMap="goodsResult" parameterType="String">
+		<![CDATA[
+			select g.*, d.fileName from t_shopping_goods g, t_goods_detail_image d
+			where g.goods_id = d.goods_id
+			and d.filetype = 'main_image'
+			and g.goods_title like '%' || #{searchWord} || '%'
+			order by g.goods_creDate desc
+		]]>
+	</select>
+	<select id="selectKeywordSearch" resultType="String" parameterType="String">
+		<![CDATA[
+			select goods_title from t_shopping_goods
+			where goods_title like '%' || #{keyword} || '%'
+			order by goods_creDate desc
+		]]>
+	</select>
 </mapper>
